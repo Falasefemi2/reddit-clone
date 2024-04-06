@@ -6,6 +6,7 @@ import { ThemeToggle } from './ThemeToggle';
 import { Button } from '@/components/ui/button';
 import { RegisterLink, LoginLink } from "@kinde-oss/kinde-auth-nextjs/components";
 import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server'
+import UserDropdown from './UserDropdown';
 
 
 const Navbar = async () => {
@@ -21,7 +22,8 @@ const Navbar = async () => {
             <div className='flex items-center gap-x-4'>
                 <ThemeToggle />
                 {user ? (
-                    <Button>Log out</Button>
+                    // <Button>Log out</Button>
+                    <UserDropdown userImage={user.picture} />
                 ) : (
                     <div>
                         <Button variant="secondary" asChild>
