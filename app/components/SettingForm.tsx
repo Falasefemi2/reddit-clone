@@ -5,10 +5,19 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
+import { updateUsername } from "../actions";
+import SubmitButton from "./SubmitButtons";
+import { useFormState } from "react-dom";
+
+const initialState = {
+    username: "",
+}
 
 const SettingsForm = ({ username }: { username: string | null | undefined }) => {
+    const [state, formAction] = useFormState(updateUsername, initialState)
+
     return (
-        <form>
+        <form action={formAction}>
             <h1 className="text-3xl font-extralight tracking-tight">Settings</h1>
 
             <Separator className="my-4" />
@@ -21,7 +30,7 @@ const SettingsForm = ({ username }: { username: string | null | undefined }) => 
                 <Button variant="secondary" asChild type="button">
                     <Link href="/">Cancel</Link>
                 </Button>
-                <Button>Change Username</Button>
+                <SubmitButton />
             </div>
         </form>
     );
